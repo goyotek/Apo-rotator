@@ -1,169 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Image Slider</title>
-  <style>
-    .slider {
-      width: 100%;
-      height: 500px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Rotation Test</title>
 </head>
 <body>
-  <div class="slider">
-    <div class="slide active">
-      <img src="image1.jpg" alt="Image 1">
-    </div>
-    <div class="slide">
-      <img src="image2.jpg" alt="Image 2">
-    </div>
-    <div class="slide">
-      <img src="image3.jpg" alt="Image 3">
-    </div>
-    <div class="slide">
-      <img src="image4.jpg" alt="Image 4">
-    </div>
-    <div class="slide">
-      <img src="image5.jpg" alt="Image 5">
-    </div>
-    <div class="slide">
-      <img src="image6.jpg" alt="Image 6">
-    </div>
-    <div class="slide">
-      <img src="image7.jpg" alt="Image 7">
-    </div>
-    <div class="slide">
-      <img src="image8.jpg" alt="Image 8">
-    </div>
-    <div class="slide">
-      <img src="image9.jpg" alt="Image 9">
-    </div>
-    <div class="slide">
-      <img src="image10.jpg" alt="Image 10">
-    </div>
-  </div>
+  <h1>Image Rotation</h1>
+  <img id="gruppe1.png" src="" alt="Image">  <script>
+      function rotateImage() {
+  const today = new Date();
+  const startDate = new Date("2024-06-27"); // Adjust year if necessary
 
-  <script>
-    var slides = document.querySelectorAll('.slide');
-    var currentSlide = 0;
+  // Calculate days since start date
+  const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
 
-    function showSlide(n) {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (n + slides.length) % slides.length;
-      slides[currentSlide].classList.add('active');
+  // Get the image index based on modulo operation (every 10 days)
+  const imageIndex = daysSinceStart % 10;
+
+  // Define image filenames (adjust if filenames differ)
+  const imageNames = [
+    "gruppe1.png",
+    "gruppe2.png",
+    "gruppe3.png",
+    "gruppe4.png",
+    "gruppe5.png",
+    "gruppe6.png",
+    "gruppe7.png",
+    "gruppe8.png",
+    "gruppe9.png",
+    "gruppe10.png",
+  ];
+
+  // Check if today's date is after June 8th
+  if (today.getMonth() === 5 && today.getDate() > 8) {
+    return; // Don't show image after cycle ends
+  }
+
+  // Check for .png extension (optional, adjust logic if needed)
+  if (!imageNames[imageIndex].endsWith(".png")) {
+    return; // Skip non-png files
+  }
+
+  // Set the image source based on index
+  const imageElement = document.getElementById("gruppe1.png"); // Replace with your image element id
+  imageElement.src = imagePath + imageNames[imageIndex];
+}
+
+// Call the function on page load and at regular intervals (e.g., daily)
+window.onload = rotateImage;
+// You can call rotateImage() daily using functions like setInterval()
     }
 
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    setInterval(nextSlide, 36<!DOCTYPE html>
-<html>
-<head>
-  <title>Image Slider</title>
-  <style>
-    .slider {
-      width: 100%;
-      height: 500px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  </style>
-</head>
-<body>
-  <div class="slider">
-    <div class="slide active">
-      <img src="image1.jpg" alt="Image 1">
-    </div>
-    <div class="slide">
-      <img src="image2.jpg" alt="Image 2">
-    </div>
-    <div class="slide">
-      <img src="image3.jpg" alt="Image 3">
-    </div>
-    <div class="slide">
-      <img src="image4.jpg" alt="Image 4">
-    </div>
-    <div class="slide">
-      <img src="image5.jpg" alt="Image 5">
-    </div>
-    <div class="slide">
-      <img src="image6.jpg" alt="Image 6">
-    </div>
-    <div class="slide">
-      <img src="image7.jpg" alt="Image 7">
-    </div>
-    <div class="slide">
-      <img src="image8.jpg" alt="Image 8">
-    </div>
-    <div class="slide">
-      <img src="image9.jpg" alt="Image 9">
-    </div>
-    <div class="slide">
-      <img src="image10.jpg" alt="Image 10">
-    </div>
-  </div>
-
-  <script>
-    var slides = document.querySelectorAll('.slide');
-    var currentSlide = 0;
-
-    function showSlide(n) {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (n + slides.length) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    setInterval(nextSlide, 86400000); // 86400000 milliseconds = 1 day
-  </script>
-</body>
-</html>000); // 86400000 milliseconds = 1 day
+    window.onload = rotateImage;
   </script>
 </body>
 </html>
+
+
